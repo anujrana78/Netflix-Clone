@@ -6,6 +6,6 @@
 @tailwind utilities;
 
 body{
-  background-color: rgb(230, 210, 210);
+  background-color: rgb(0, 0, 0);
   font-family: 'Lato', sans-serif;
 }
