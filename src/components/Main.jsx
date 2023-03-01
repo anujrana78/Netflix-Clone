@@ -28,13 +28,13 @@ const Main = () => {
       <div className="w-full h-full">
         <div className="absolute w-full h-[550px] bg-gradient-to-r from-black"></div>
         <img
-          className="h-[550px] w-full object-cover"
+          className="w-full h-full object-cover"
           src={`https://image.tmdb.org/t/p/original/${randomMovie?.backdrop_path}`}
           alt="Heading"
         />
       </div>
       <div className="ml-11 absolute top-[20%] lg:top-[30%]">
-        <h1 className="my-3 text-2xl md:text-5xl font-bold">{randomMovie?.title}</h1>
+        <h1 className="my-3 text-2xl md:text-4xl font-bold">{randomMovie?.title}</h1>
         <div className="flex gap-2">
           <button className="  text-black border bg-gray-300 p-2 px-5">
             Play
