@@ -28,7 +28,7 @@ const Main = () => {
       <div className="w-full h-full">
         <div className="absolute w-full h-[550px] bg-gradient-to-r from-black"></div>
         <img
-          className="w-full h-full object-cover"
+          className="h-full w-full object-cover"
           src={`https://image.tmdb.org/t/p/original/${randomMovie?.backdrop_path}`}
           alt="Heading"
         />
