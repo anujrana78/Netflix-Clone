@@ -1,7 +1,27 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { UserAuth } from "../context/authContext";
+
 
 const Login = () => {
+  const [email,setEmail] = useState('')
+  const [password,setPassword] = useState('')
+  const { user,logIn } = UserAuth();
+  const [error,setError] = useState(false)
+  const navigate = useNavigate()
+
+  const handleLogin = async(e) => {
+    e.preventDefault()
+    try{
+      await logIn(email,password)
+      navigate('/')
+    }
+    catch(error){
+      console.log(error)
+      setError(true)
+    }
+  }
+  
   return (
     <>
       <>
@@ -17,21 +37,27 @@ const Login = () => {
 
           <div className="fixed w-full px-4 py-24 z-50">
             <div className="max-w-[450px] h-[600px] mx-auto bg-black/60 text-white ">
-              <form className="flex flex-col gap-2  p-10">
+              <form className="flex flex-col gap-2  p-10" onSubmit={handleLogin}>
                 <h1 className="text-white font-bold text-4xl my-4 ">Sign In</h1>
+                {error && <p className='text-[15px] bg-red-700 p-3'>Email or password is not valid</p>}
                 <input
                   className="bg-gray-700 pr-20 pl-5 py-3 text-white "
                   type="text"
                   placeholder="Email or phone number"
                   autoComplete="email"
+                  onChange={e => setEmail(e.target.value)}
+                  style={ error ? {borderBottom : "3px solid red", } : {}}
                 ></input>
+               
                 <input
-                  className="bg-gray-700 pr-20 pl-5 py-3     "
+                  className="bg-gray-700 pr-20 pl-5 py-3"
                   type="password"
                   placeholder="Password"
                   autoComplete="current-password"
+                  onChange={e => setPassword(e.target.value)}
+                  style={ error ? {borderBottom : "3px solid red", } : {}}
                 ></input>
-                <button className="bg-red-700 text-white text-1xl px-15 py-4     mt-10     rounded-sm font-bold ">
+                <button className="bg-red-700 text-white text-1xl px-15 py-4 mt-10 rounded-sm font-bold " >
                   Sign In
                 </button>
               </form>
@@ -42,7 +68,12 @@ const Login = () => {
                 </div>
                 <p className=" text-gray-500">Need Help?</p>
               </div>
-              <div className="mx-10 mt-12 text-gray-500">New to Netflix? <span className="text-white"><Link to="/signin">Sign Up </Link></span></div>
+              <div className="mx-10 mt-12 text-gray-500">
+                New to Netflix?{" "}
+                <span className="text-white">
+                  <Link to="/signup">Sign Up </Link>
+                </span>
+              </div>
             </div>
           </div>
         </div>

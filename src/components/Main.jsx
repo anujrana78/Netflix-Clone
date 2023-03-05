@@ -15,7 +15,7 @@ const Main = () => {
   }, []);
 
   const randomMovie = movies[Math.floor(Math.random() * movies.length)];
-  console.log("Movie", randomMovie);
+
 
   // to create read more like on paragraph
   const truncareString = (str,num) => {

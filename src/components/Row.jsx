@@ -11,7 +11,6 @@ const Row = ({ title, fetchUrl,rowID }) => {
     const fetchData = async () => {
       const response = await axios.get(fetchUrl);
       const data = await response.data.results;
-      console.log("Forward Data", data);
       setMovie(data);
     };
     fetchData();
